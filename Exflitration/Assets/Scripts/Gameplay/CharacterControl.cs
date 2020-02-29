@@ -17,6 +17,7 @@ public class CharacterControl : MonoBehaviour
     private Vector3 target3;
     Quaternion qTo;
     public bool IsHidden { get; set; }
+    public bool IsDead { get; set; }
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class CharacterControl : MonoBehaviour
         velocity = new Vector2(1.0f, 1.0f);
         target = tr.position;
         IsHidden = false;
+        IsDead = false;
     }
 
     // Update is called once per frame
@@ -106,5 +108,10 @@ public class CharacterControl : MonoBehaviour
         hasReachedTarget = true;
         rb2.velocity = Vector3.zero;
         rb2.angularVelocity = 0;
+    }
+    public void Die()
+    {
+        IsDead = true;
+        // Other stuff
     }
 }
