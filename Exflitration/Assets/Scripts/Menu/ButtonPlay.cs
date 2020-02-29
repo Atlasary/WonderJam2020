@@ -16,6 +16,6 @@ public class ButtonPlay : MonoBehaviour
     
     public void play()
     {
-        SceneManager.LoadScene("Pause");
+        SceneManager.LoadScene("SelectLevels");
     }
 }
