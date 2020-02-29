@@ -88,9 +88,15 @@ public class EnemyController : MonoBehaviour
     {
         return Vector3.Distance(alfred, billy) < closeEnoughFactor;
     }
-
+    
     void updateFocus(GameObject target)
     {
         this.target = target;
+        Debug.Log("APDJDKSLM");
+    }
+
+    void looseFocus()
+    {
+        target = null;
     }
 }

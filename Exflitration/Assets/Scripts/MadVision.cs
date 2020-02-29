@@ -37,6 +37,7 @@ public class MadVision : MonoBehaviour
             {
                 minDistance = distance;
                 nearest = obj;
+                Debug.Log("trouvé");
             }
         }
         return nearest;
@@ -45,7 +46,12 @@ public class MadVision : MonoBehaviour
     private void changeFocus(GameObject target)
     {
         focus = target;
-        transform.parent.gameObject.BroadcastMessage("updateFocus", target);
+        if (target == null) {
+            transform.parent.gameObject.BroadcastMessage("looseFocus");
+        } else {
+            transform.parent.gameObject.BroadcastMessage("updateFocus", target);
+        }
+        
     }
 
 
