@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Stress : MonoBehaviour
 {
-
+    
     // Jauge de Stress du survivant
-    public float Stress = 0f;
+    public float newStress = 0f;
 
     // Insertion des GameObject
     public GameObject Killer;
@@ -30,13 +30,7 @@ public class Stress : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Avec le temps le taux de stress du survivant diminue
-        if (Stress > 0)
-        {
 
-        }
-        // Avec l'éloignement par rapport au tueur, le taux de stress diminue
-        if ()
     }
 
     void EnterVision()

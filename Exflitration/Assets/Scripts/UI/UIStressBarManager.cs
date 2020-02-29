@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityStandardAssets.Characters.ThirdPerson;
-
+/*
 public class UIStressBarManager : MonoBehaviour
 {
     // Insertion des variables globales
@@ -35,7 +34,7 @@ public class UIStressBarManager : MonoBehaviour
     {
         TimeLeftStop = false;
         TEMPS_RESTANT = from;
-        Update();
+        UnityEngine.PlayerLoop.Update();
         StartCoroutine(UpdateCoroutine());
     }
 
@@ -69,3 +68,4 @@ public class UIStressBarManager : MonoBehaviour
         }
     }
 }
+*/
