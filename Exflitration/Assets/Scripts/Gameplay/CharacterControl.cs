@@ -16,6 +16,8 @@ public class CharacterControl : MonoBehaviour
     private Vector2 dir;
     private Vector3 target3;
     Quaternion qTo;
+    public bool IsHidden { get; set; }
+    public bool IsDead { get; set; }
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class CharacterControl : MonoBehaviour
         bc2 = GetComponent<BoxCollider2D>();
         velocity = new Vector2(1.0f, 1.0f);
         target = tr.position;
+        IsHidden = false;
+        IsDead = false;
     }
 
     // Update is called once per frame
@@ -82,21 +86,32 @@ public class CharacterControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             Debug.Log("Wall Touched");
-            target = tr.position;
-            hasReachedTarget = true;
             stopMoving();
         }
+        if (collision.gameObject.CompareTag("Hideout"))
+        {
+            Debug.Log("Hideout");
+        }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         Debug.Log("Exit");
         bc2.isTrigger = false;
+        rb2.velocity = Vector3.zero;
+        rb2.angularVelocity = 0;
     }
 
     private void stopMoving()
     {
+        target = tr.position;
+        hasReachedTarget = true;
         rb2.velocity = Vector3.zero;
         rb2.angularVelocity = 0;
-        Debug.Log(rb2.velocity);
+    }
+    public void Die()
+    {
+        IsDead = true;
+        // Other stuff
     }
 }
