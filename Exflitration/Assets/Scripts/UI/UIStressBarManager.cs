@@ -22,6 +22,7 @@ public class UIStressBarManager : MonoBehaviour
     private int SurvivorDownNumber = 0;
     private GameObject TimeLeftText;
 
+    
     public void SurvivorDown()
     {
         if (SurvivorDownNumber > SurvivorGroup.Length)
@@ -56,7 +57,6 @@ public class UIStressBarManager : MonoBehaviour
         inst.SetActive(false);
         inst.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         inst.transform.SetParent(HudLayout.transform.parent, false);
-
         // server.GetComponent<ServerModel>().setProgressBar(inst);
     }
 
