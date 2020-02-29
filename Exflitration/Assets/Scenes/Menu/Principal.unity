@@ -642,7 +642,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 648167239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0256683e468d5049aeb3604d6f58121, type: 3}
+  m_Script: {fileID: 11500000, guid: 06116f4fc115ad8409750784a1f63ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button_play: {fileID: 648167241}
@@ -658,6 +658,7 @@ GameObject:
   - component: {fileID: 735907693}
   - component: {fileID: 735907692}
   - component: {fileID: 735907691}
+  - component: {fileID: 735907694}
   m_Layer: 5
   m_Name: Button_leave
   m_TagString: Untagged
@@ -764,6 +765,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735907689}
   m_CullTransparentMesh: 0
+--- !u!114 &735907694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735907689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d78f1e16e876e44a91e5460b0c8fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_leave: {fileID: 735907691}
 --- !u!1 &866476168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,7 +1163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1507044713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fdd159d600e473498dc7c6c3e683ba2, type: 3}
+  m_Script: {fileID: 11500000, guid: a7dd2f3aea3d4964db732722b96058ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button_controls: {fileID: 1507044715}

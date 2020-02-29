@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Louis_EnemyMovements.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Menu/OptionsPause.unity
+    guid: 0726750d069030748b2a836e677e04e6
+  - enabled: 1
+    path: Assets/Scenes/Menu/Pause.unity
+    guid: a8b0f1c7390330947aee705135638209
+  - enabled: 1
+    path: Assets/Scenes/Menu/Principal.unity
+    guid: 363812ba91b50cc4082f7467dee85de1
+  - enabled: 1
+    path: Assets/Scenes/Menu/MenuControls.unity
+    guid: 40d4b186c28c03a4fa6efa7f835516e1
   m_configObjects: {}
