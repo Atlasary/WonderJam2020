@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: c7fd02ae3c433aa41a0f07126d3c88c7
+guid: debe3a8561f5eec4a97c59eebee743a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5356574185940491189
-    second: Wall_0
+      213: -8074573578787642040
+    second: Wall_bis_0
   - first:
-      213: 7088962694465329434
-    second: Wall_1
+      213: 3009224515931011399
+    second: Wall_bis_1
   - first:
-      213: 6120593257351612271
-    second: Wall_2
+      213: 1697142827138035455
+    second: Wall_bis_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -45,7 +45,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wall_0
+      name: Wall_bis_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b446df18820a9a5b0800000000000000
-      internalID: -5356574185940491189
+      spriteID: 845ab9b6c1a51ff80800000000000000
+      internalID: -8074573578787642040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall_1
+      name: Wall_bis_1
       rect:
         serializedVersion: 2
-        x: 394
-        y: 26
-        width: 177
-        height: 178
+        x: 393
+        y: 28
+        width: 180
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a191a9df20e016260800000000000000
-      internalID: 7088962694465329434
+      spriteID: 749f671f0c9e2c920800000000000000
+      internalID: 3009224515931011399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall_2
+      name: Wall_bis_2
       rect:
         serializedVersion: 2
         x: 714
-        y: 36
+        y: 37
         width: 637
-        height: 138
+        height: 136
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f670817a327b0f450800000000000000
-      internalID: 6120593257351612271
+      spriteID: ffe2aa0d8667d8710800000000000000
+      internalID: 1697142827138035455
       vertices: []
       indices: 
       edges: []
@@ -172,7 +172,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3cb7ce5d06904f246a53292a38078a06
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

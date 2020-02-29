@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: c7fd02ae3c433aa41a0f07126d3c88c7
+guid: 27e21e9152b609c4ca29ddf454b0d05c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5356574185940491189
-    second: Wall_0
+      213: 1131633699476435399
+    second: Cara_0
   - first:
-      213: 7088962694465329434
-    second: Wall_1
+      213: -2620174362486587942
+    second: Cara_1
   - first:
-      213: 6120593257351612271
-    second: Wall_2
+      213: -8804153290798622085
+    second: Cara_2
+  - first:
+      213: -850497317195816350
+    second: Cara_3
+  - first:
+      213: -2615090302093142641
+    second: Cara_4
+  - first:
+      213: -1213986188707561167
+    second: Cara_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -107,13 +116,97 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wall_0
+      name: Cara_0
       rect:
         serializedVersion: 2
         x: 0
+        y: 156
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c17721aade54bf00800000000000000
+      internalID: 1131633699476435399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cara_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 152
+        width: 125
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: addb662bc4543abd0800000000000000
+      internalID: -2620174362486587942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cara_2
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 145
+        width: 124
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a9cd97a3d51d580800000000000000
+      internalID: -8804153290798622085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cara_3
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 142
+        width: 124
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262ee16323d6234f0800000000000000
+      internalID: -850497317195816350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cara_4
+      rect:
+        serializedVersion: 2
+        x: 269
         y: 0
-        width: 208
-        height: 208
+        width: 124
+        height: 125
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b446df18820a9a5b0800000000000000
-      internalID: -5356574185940491189
+      spriteID: f855b20c93555bbd0800000000000000
+      internalID: -2615090302093142641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall_1
+      name: Cara_5
       rect:
         serializedVersion: 2
-        x: 394
-        y: 26
-        width: 177
-        height: 178
+        x: 124
+        y: 11
+        width: 125
+        height: 125
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,29 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a191a9df20e016260800000000000000
-      internalID: 7088962694465329434
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wall_2
-      rect:
-        serializedVersion: 2
-        x: 714
-        y: 36
-        width: 637
-        height: 138
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f670817a327b0f450800000000000000
-      internalID: 6120593257351612271
+      spriteID: 1310bdb4efd072fe0800000000000000
+      internalID: -1213986188707561167
       vertices: []
       indices: 
       edges: []
@@ -172,7 +244,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3cb7ce5d06904f246a53292a38078a06
+    spriteID: f6b3cd41553586b4593500154be8326e
     internalID: 0
     vertices: []
     indices: 
