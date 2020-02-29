@@ -8,6 +8,8 @@ TagManager:
   - People
   - Wall
   - Cachette
+  - Hideout
+  - Distraction
   layers:
   - Default
   - TransparentFX

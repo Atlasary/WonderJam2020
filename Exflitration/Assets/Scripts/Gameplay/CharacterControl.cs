@@ -8,6 +8,7 @@ public class CharacterControl : MonoBehaviour
     private BoxCollider2D bc2;
 
     public float speed = 3f;
+    public Sprite deadSprite;
     private Vector2 velocity;
     private bool selected = false;
     private Vector3 target;
@@ -34,6 +35,11 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // If The character is dead, Do nothing
+        if (IsDead)
+        {
+            return;
+        }
         float step = speed * Time.deltaTime;
 
         if (tr.position.x == target.x && tr.position.y == target.y)
@@ -66,13 +72,17 @@ public class CharacterControl : MonoBehaviour
 
     public void CharacterClicked()
     {
-        selected = true;
-        sr.color = Color.cyan;
+        if (!IsDead)
+        {
+            selected = true;
+            sr.color = Color.cyan;
+        }
     }
     public void CharacterUnClicked()
     {
         selected = false;
         sr.color = Color.white;
+        //StopMoving();
     }
     
     public void MoveToPosition(Vector2 target)
@@ -86,7 +96,7 @@ public class CharacterControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             Debug.Log("Wall Touched");
-            stopMoving();
+            StopMoving();
         }
         if (collision.gameObject.CompareTag("Hideout"))
         {
@@ -102,16 +112,19 @@ public class CharacterControl : MonoBehaviour
         rb2.angularVelocity = 0;
     }
 
-    private void stopMoving()
+    public void StopMoving()
     {
         target = tr.position;
         hasReachedTarget = true;
         rb2.velocity = Vector3.zero;
         rb2.angularVelocity = 0;
+        Debug.Log(target);
     }
     public void Die()
     {
         IsDead = true;
-        // Other stuff
+        CharacterUnClicked();
+        sr.sprite = deadSprite;
+        // Score (lose points)
     }
 }
