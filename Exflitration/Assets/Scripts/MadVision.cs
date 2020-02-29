@@ -6,31 +6,50 @@ public class MadVision : MonoBehaviour
 {
 
     private GameObject focus = null;
-    //private List<GameObject> enVision = new List<GameObject>;
+    private List<GameObject> enVision = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
+        chooseFocus();
     }
 
-    private void OnTriggerEnter2D(Collider2D col) 
+    private void chooseFocus() 
     {
-        if (col.tag == "People") {
-            if (peopleInVision(col)) {
-                seeSomeone(col.gameObject);
+        changeFocus(nearest(enVision));
+    }
+
+    private GameObject nearest(List<GameObject> list) 
+    {
+        float minDistance = 0;
+        float distance;
+        GameObject nearest = null;
+        foreach (GameObject obj in list) 
+        {
+            distance = Vector3.Distance(transform.parent.position, obj.transform.position);
+            if (distance < minDistance) 
+            {
+                minDistance = distance;
+                nearest = obj;
             }
         }
+        return nearest;
+    }
+    
+    private void changeFocus(GameObject target)
+    {
+        focus = target;
+        transform.parent.gameObject.BroadcastMessage("updateFocus", target);
     }
 
-    bool peopleInVision(Collider2D aim) 
+
+    bool isPeopleVisible(Collider2D aim) 
     {
         int layerMask = ~(1 << 2); // all except 2
         RaycastHit2D hit = Physics2D.Linecast(transform.position, aim.transform.position, layerMask , -Mathf.Infinity, Mathf.Infinity);
@@ -55,31 +74,48 @@ public class MadVision : MonoBehaviour
     {
 
         Debug.Log("See someone");
-        people.BroadcastMessage("EnterVision");
-        estEnFocus(people);
-        /*
-        if (!estEnVision(people)) 
+        if (!enVision.Contains(people)) 
         {
-            people.BroadcastMessage("EnterVision");
-        }*/
+            enterVision(people);
+        }
     }
 
-    private void estEnVision() 
+    private void enterVision(GameObject people)
     {
-        //return enVision.Contains(people);
+        enVision.Add(people);
+        people.BroadcastMessage("EnterVision");
     }
 
-    private void estEnFocus(GameObject target)
+    private void exitVision(GameObject people) 
     {
-        focus = target;
-        transform.parent.gameObject.BroadcastMessage("updateFocus", target);
+        Debug.Log("Don't see anymore");
+        enVision.Remove(people);
+        people.BroadcastMessage("ExitVision");
+    }
+
+    private void OnTriggerEnter2D(Collider2D obj) 
+    {
+        if (obj.tag == "People") {
+            if (isPeopleVisible(obj)) {
+                seeSomeone(obj.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D obj)
+    {
+        if (obj.tag == "People") {
+            if (isPeopleVisible(obj)) {
+                seeSomeone(obj.gameObject);
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D obj) 
     {
-        if (obj.tag == "People") {
-            Debug.Log("Don't see anymore");
-            obj.BroadcastMessage("ExitVision");
+        if (obj.tag == "People") 
+        {
+            exitVision(obj.gameObject);
         }
     }
 
