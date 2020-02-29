@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6413458602199645445}
-  - component: {fileID: 6413458602199645444}
   - component: {fileID: 6413458602199645451}
   - component: {fileID: 6413458602199645450}
   - component: {fileID: 6413458602199645449}
   - component: {fileID: 6413458602199645446}
+  - component: {fileID: 2454788596636503886}
   m_Layer: 0
   m_Name: SurvivorCharacter
   m_TagString: Survivor
@@ -35,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6413458602199645444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6413458602199645448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 246cfcebd717b9a4c960ba3093c7d74b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!114 &6413458602199645451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d5e3fd83f4fe841a3410b79b094ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
 --- !u!212 &6413458602199645450
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -157,3 +145,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2454788596636503886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6413458602199645448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04f1c4f9cdd5504c8069dcfe96d9387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newStress: 0
+  Killer: {fileID: 0}
+  StressBar: {fileID: 0}

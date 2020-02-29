@@ -82,8 +82,6 @@ public class CharacterControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             Debug.Log("Wall Touched");
-            target = tr.position;
-            hasReachedTarget = true;
             stopMoving();
         }
     }
@@ -91,12 +89,15 @@ public class CharacterControl : MonoBehaviour
     {
         Debug.Log("Exit");
         bc2.isTrigger = false;
+        rb2.velocity = Vector3.zero;
+        rb2.angularVelocity = 0;
     }
 
     private void stopMoving()
     {
+        target = tr.position;
+        hasReachedTarget = true;
         rb2.velocity = Vector3.zero;
         rb2.angularVelocity = 0;
-        Debug.Log(rb2.velocity);
     }
 }
