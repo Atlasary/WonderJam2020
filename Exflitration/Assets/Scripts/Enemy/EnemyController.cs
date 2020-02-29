@@ -57,4 +57,9 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
+    void updateFocus(GameObject target)
+    {
+        Debug.Log(target.name);
+    }
 }
