@@ -25,16 +25,14 @@ public class ClickManager : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log("hit");
                 //Check if the ray has hit a character
                 if (hit.collider.gameObject.tag == "Survivor")
                 {
-                    
+                    Debug.Log("Survivor hit");
                     // Unselect if you click on the same character twice
                     if (hit.collider.gameObject == previousObject)
                     {
                         previousObject.GetComponent<CharacterControl>().CharacterUnClicked();
-                        Debug.Log("yeah");
                         previousObject = null;
                     }
                     else
