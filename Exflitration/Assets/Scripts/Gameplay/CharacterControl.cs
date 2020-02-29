@@ -7,9 +7,9 @@ public class CharacterControl : MonoBehaviour
     private Rigidbody2D rb2;
     private BoxCollider2D bc2;
 
+    public float speed = 3f;
     private Vector2 velocity;
     private bool selected = false;
-    private float speed = 3f;
     private Vector3 target;
     private Vector2 position;
     bool hasReachedTarget = false;
