@@ -15,7 +15,7 @@ public float speed = 5f;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Z)) {
+        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.W)) {
             transform.Translate(Vector3.up*Time.deltaTime*speed);
         }
         if (Input.GetKey(KeyCode.S)) {
@@ -24,7 +24,7 @@ public float speed = 5f;
         if (Input.GetKey(KeyCode.D)) {
             transform.Translate(Vector3.right*Time.deltaTime*speed);
         }
-        if (Input.GetKey(KeyCode.Q)) {
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A)) {
             transform.Translate(Vector3.left*Time.deltaTime*speed);
         }
     }
