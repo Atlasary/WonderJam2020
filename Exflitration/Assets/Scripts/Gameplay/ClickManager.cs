@@ -14,6 +14,7 @@ public class ClickManager : MonoBehaviour
         //
     }
 
+
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -21,7 +22,7 @@ public class ClickManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
 
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {      
             if (hit.collider != null)
             {
@@ -60,7 +61,7 @@ public class ClickManager : MonoBehaviour
                         float distance = Vector2.Distance(previousCharacter.GetComponent<Transform>().position, mousePos2D);
                         Debug.Log(distance);
                         //previousObject = hit.collider.gameObject;
-                        if (distance <= 1f)
+                        if (distance <= 1.3f)
                         {
                             hit.collider.gameObject.GetComponent<Distraction>().Distract();
                         }
@@ -71,18 +72,18 @@ public class ClickManager : MonoBehaviour
                     }
 
                 }
-                else
-                {
-                    if (previousObject != null)
-                    {
-                        if (previousObject.tag == "Survivor")
-                        {
-                            //Debug.Log("test");
-                            //previousObject.GetComponent<CharacterControl>().CharacterUnClicked();
-                            previousObject.GetComponent<CharacterControl>().MoveToPosition(mousePos2D);
-                        }
-                    }
-                }
+                //else  // Obselete?
+                //{
+                //    if (previousObject != null)
+                //    {
+                //        if (previousObject.tag == "Survivor")
+                //        {
+                //            //Debug.Log("test");
+                //            //previousObject.GetComponent<CharacterControl>().CharacterUnClicked();
+                //            previousObject.GetComponent<CharacterControl>().MoveToPosition(mousePos2D);
+                //        }
+                //    }
+                //}
             }
             else
             {
@@ -97,6 +98,19 @@ public class ClickManager : MonoBehaviour
                 }
 
             }
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            if (previousCharacter != null)
+            {
+                previousCharacter.GetComponent<CharacterControl>().CharacterUnClicked();
+                previousCharacter = null;
+                previousObject = null;
+            }
+        }
+        else if (previousObject != null && previousCharacter == previousObject)
+        {
+            previousCharacter.GetComponent<CharacterControl>().MoveToPosition(mousePos2D);
         }
     }
 }

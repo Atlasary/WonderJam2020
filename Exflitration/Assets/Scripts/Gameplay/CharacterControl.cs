@@ -82,6 +82,7 @@ public class CharacterControl : MonoBehaviour
     {
         selected = false;
         sr.color = Color.white;
+        //StopMoving();
     }
     
     public void MoveToPosition(Vector2 target)
@@ -95,7 +96,7 @@ public class CharacterControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             Debug.Log("Wall Touched");
-            stopMoving();
+            StopMoving();
         }
         if (collision.gameObject.CompareTag("Hideout"))
         {
@@ -111,12 +112,13 @@ public class CharacterControl : MonoBehaviour
         rb2.angularVelocity = 0;
     }
 
-    private void stopMoving()
+    public void StopMoving()
     {
         target = tr.position;
         hasReachedTarget = true;
         rb2.velocity = Vector3.zero;
         rb2.angularVelocity = 0;
+        Debug.Log(target);
     }
     public void Die()
     {
