@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MadVision : MonoBehaviour
 {
-
-    private GameObject focus = null;
-    private List<GameObject> enVision = new List<GameObject>();
+    private List<GameObject> inVision = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -17,60 +15,27 @@ public class MadVision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        chooseFocus();
-    }
 
-    private void chooseFocus() 
-    {
-        changeFocus(nearest(enVision));
     }
-
-    private GameObject nearest(List<GameObject> list) 
-    {
-        float minDistance = Mathf.Infinity;
-        float distance;
-        GameObject nearest = null;
-        foreach (GameObject obj in list) 
-        {
-            distance = Vector3.Distance(transform.parent.position, obj.transform.position);
-            if (distance < minDistance) 
-            {
-                minDistance = distance;
-                nearest = obj;
-                Debug.Log("trouvé");
-            }
-        }
-        return nearest;
-    }
-    
-    private void changeFocus(GameObject target)
-    {
-        focus = target;
-        if (target == null) {
-            transform.parent.gameObject.BroadcastMessage("looseFocus");
-        } else {
-            transform.parent.gameObject.BroadcastMessage("updateFocus", target);
-        }
-        
-    }
-
 
     bool isPeopleVisible(GameObject aim) 
     {
         int layerMask = ~(1 << 2); // all except 2
         RaycastHit2D hit = Physics2D.Linecast(transform.position, aim.transform.position, layerMask , -Mathf.Infinity, Mathf.Infinity);
+        Collider2D col = hit.collider;
+
         // If it hits something...
-        if (hit.collider != null) 
+        if (col != null) 
         {
-            if (hit.collider.gameObject.GetInstanceID() == aim.gameObject.GetInstanceID())
+            if (col.gameObject.GetInstanceID() == aim.gameObject.GetInstanceID())
             {
+                if (isHidden(col.gameObject) && isAlreadyVisible(col.gameObject))
+                {
+                    exitVision(col.gameObject);
+                } 
                 return true;
             }
-            if (hit.collider.tag == "Hiding")
-            {
-                layerMask = 1 << 10; // hiding
-                //RaycastHit2D hit = Physics2D.Linecast(transform.position, aim.transform.position, layerMask , -Mathf.Infinity, Mathf.Infinity);
-            }
+            
         }
 
         return false; 
@@ -78,30 +43,65 @@ public class MadVision : MonoBehaviour
 
     private void seeSomeone(GameObject people)
     {
-
-        Debug.Log("See someone");
-        if (!enVision.Contains(people)) 
+        if (!isAlreadyVisible(people)) 
         {
-            enterVision(people);
+            enterInVision(people);
+        } else {
+            stayInVision(people);
         }
     }
-
-    private void enterVision(GameObject people)
+    
+    private GameObject nearest(IEnumerable<GameObject> list) 
     {
-        enVision.Add(people);
+        float minDistance = Mathf.Infinity;
+        float distance;
+        GameObject nearest = null;
+        foreach (GameObject obj in list) 
+        {
+            if (obj != null) {
+                distance = Vector3.Distance(transform.parent.position, obj.transform.position);
+                if (distance < minDistance) 
+                {
+                    minDistance = distance;
+                    nearest = obj;
+                    Debug.Log("trouvé");
+                }
+            }
+        }
+        return nearest;
+    }
+
+    private bool isAlreadyVisible(GameObject people) 
+    {
+        return inVision.Contains(people);
+    }
+
+    private void enterInVision(GameObject people)
+    {
+        inVision.Add(people);
+        transform.parent.gameObject.BroadcastMessage("setNearestVisible",people);
         people.BroadcastMessage("EnterVision");
+    }
+
+    private void stayInVision(GameObject people)
+    {
+        transform.parent.gameObject.BroadcastMessage("setNearestVisible",people);
     }
 
     private void exitVision(GameObject people) 
     {
         Debug.Log("Don't see anymore");
-        enVision.Remove(people);
+        inVision.Remove(people);
+        if (isHidden(people)) {
+            transform.parent.gameObject.BroadcastMessage("addInMemory",people);
+            transform.parent.gameObject.BroadcastMessage("removeNearestVisible");
+        }
         people.BroadcastMessage("ExitVision");
     }
 
     private void OnTriggerEnter2D(Collider2D obj) 
     {
-        if (obj.tag == "People") {
+        if (obj.tag == "Survivor") {
             if (isPeopleVisible(obj.gameObject)) {
                 seeSomeone(obj.gameObject);
             }
@@ -110,20 +110,23 @@ public class MadVision : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D obj)
     {
-        if (obj.tag == "People") {
-            if (isPeopleVisible(obj.gameObject)) {
+        if (obj.tag == "Survivor") {
+            if (isPeopleVisible(obj.gameObject) && !isHidden(obj.gameObject)) {
                 seeSomeone(obj.gameObject);
             }
         }
     }
 
+    private bool isHidden(GameObject people) 
+    {
+        return gameObject.GetComponent<CharacterControl>().IsHidden;
+    }
+
     private void OnTriggerExit2D(Collider2D obj) 
     {
-        if (obj.tag == "People") 
+        if (obj.tag == "Survivor") 
         {
             exitVision(obj.gameObject);
         }
     }
-
-
 }
