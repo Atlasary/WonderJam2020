@@ -18,13 +18,17 @@ public class UIStressBarManager : MonoBehaviour
     public GameObject SurvivorGroup;
     public GameObject Killer;
 
+    public int SurvivorNumber;
     private int SurvivorDownNumber = 0;
-    private GameObject TimeLeftText;
 
-    
+    // Gestion du temps
+    private GameObject TimeLeftText;
+    private float Minutes;
+    private float Seconds;
+
     public void SurvivorDown()
     {
-        if (SurvivorDownNumber > SurvivorGroup.Length)
+        if (SurvivorDownNumber > SurvivorNumber)
         {
 
         }
@@ -32,10 +36,12 @@ public class UIStressBarManager : MonoBehaviour
 
     public void StartTimer(float from)
     {
-        TimeLeftStop = false;
-        TEMPS_RESTANT = from;
-        UnityEngine.PlayerLoop.Update();
-        StartCoroutine(UpdateCoroutine());
+        
+
+    }
+    public void GameOver()
+    {
+
     }
 
     public void ResetProgress()
@@ -47,13 +53,19 @@ public class UIStressBarManager : MonoBehaviour
         SurvivorDownNumber = 0;
     }
     
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadLevel(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex);
+    }
+
     public void ShowStressBarOnSurvivor(GameObject survivor)
     {
-        GameObject inst = Instantiate(
-            StressProgressBarPrefab,
-            new Vector3(0, 0, 0),
-            Quaternion.identity);
-        inst.SetActive(false);
+        GameObject inst = Instantiate(StressProgressBarPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         inst.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         inst.transform.SetParent(HudLayout.transform.parent, false);
         // server.GetComponent<ServerModel>().setProgressBar(inst);

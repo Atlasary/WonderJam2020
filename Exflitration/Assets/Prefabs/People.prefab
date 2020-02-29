@@ -111,3 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04f1c4f9cdd5504c8069dcfe96d9387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newStress: 0
+  Killer: {fileID: 0}
+  StressBar: {fileID: 0}

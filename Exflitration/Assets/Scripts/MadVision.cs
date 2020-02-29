@@ -27,7 +27,7 @@ public class MadVision : MonoBehaviour
 
     private GameObject nearest(List<GameObject> list) 
     {
-        float minDistance = 0;
+        float minDistance = Mathf.Infinity;
         float distance;
         GameObject nearest = null;
         foreach (GameObject obj in list) 
@@ -37,6 +37,7 @@ public class MadVision : MonoBehaviour
             {
                 minDistance = distance;
                 nearest = obj;
+                Debug.Log("trouvé");
             }
         }
         return nearest;
@@ -45,11 +46,16 @@ public class MadVision : MonoBehaviour
     private void changeFocus(GameObject target)
     {
         focus = target;
-        transform.parent.gameObject.BroadcastMessage("updateFocus", target);
+        if (target == null) {
+            transform.parent.gameObject.BroadcastMessage("looseFocus");
+        } else {
+            transform.parent.gameObject.BroadcastMessage("updateFocus", target);
+        }
+        
     }
 
 
-    bool isPeopleVisible(Collider2D aim) 
+    bool isPeopleVisible(GameObject aim) 
     {
         int layerMask = ~(1 << 2); // all except 2
         RaycastHit2D hit = Physics2D.Linecast(transform.position, aim.transform.position, layerMask , -Mathf.Infinity, Mathf.Infinity);
@@ -96,7 +102,7 @@ public class MadVision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D obj) 
     {
         if (obj.tag == "People") {
-            if (isPeopleVisible(obj)) {
+            if (isPeopleVisible(obj.gameObject)) {
                 seeSomeone(obj.gameObject);
             }
         }
@@ -105,7 +111,7 @@ public class MadVision : MonoBehaviour
     private void OnTriggerStay2D(Collider2D obj)
     {
         if (obj.tag == "People") {
-            if (isPeopleVisible(obj)) {
+            if (isPeopleVisible(obj.gameObject)) {
                 seeSomeone(obj.gameObject);
             }
         }

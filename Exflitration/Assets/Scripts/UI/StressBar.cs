@@ -2,29 +2,79 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-/*
+
 public class StressBar : MonoBehaviour
 {
-    public Image progress;
 
-    public void SetProgress(float percentage)
+    public Slider volumeSlider;
+    public float ETAT_STRESS_INITIAL = 0f;
+    public float duration = 0.5f;
+    private float ETAT_STRESS_ACTUEL = 0f;
+
+    void Start()
     {
-        if (percentage > 1f)
-            progress.fillAmount = 1f;
-        else if (percentage < 0f)
-            progress.fillAmount = 0;
+        GameObject temp = GameObject.Find("StressSlider");
+        if (temp != null)
+        {
+            this.volumeSlider = temp.GetComponent<Slider>();
+            if (volumeSlider != null)
+                this.volumeSlider.normalizedValue = ETAT_STRESS_INITIAL;
+            else
+                Debug.LogError("[" + temp.name + "] - Does not contain a Slider Component!");
+        }
         else
-            progress.fillAmount = percentage;
+            Debug.LogError("Could not find an active GameObject named Volume Slider !");
+
     }
 
-    public void AddProgress(float progress)
+    public void Update()
     {
-        SetProgress(this.progress.fillAmount + progress);
+        if (checkIfExist())
+        {
+            this.ETAT_STRESS_ACTUEL = this.volumeSlider.normalizedValue;
+        }
     }
-
-    public float GetProgress()
+    public bool checkIfExist()
     {
-        return progress.fillAmount;
+        if (this.volumeSlider != null)
+            return true;
+        else
+            return false;
     }
 
-}*/
+    public Slider GetSlider()
+    {
+       return GameObject.Find("StressSlider").GetComponent<Slider>();
+    }
+
+    public void AddProgress(float percentage)
+    {
+        if (checkIfExist())
+        {
+            this.volumeSlider = this.GetSlider();
+            if (this.volumeSlider.normalizedValue + percentage > 1f)
+                this.volumeSlider.normalizedValue = 1f;
+            else if (this.volumeSlider.normalizedValue < 0f)
+                this.volumeSlider.normalizedValue = 0f + percentage;
+            else
+            {
+                StopCoroutine("CountTo");
+                StartCoroutine("CountTo", this.volumeSlider.normalizedValue + percentage);
+                this.volumeSlider.normalizedValue = this.volumeSlider.normalizedValue + percentage;
+            }
+        }
+    }
+
+    IEnumerator CountTo(float target)
+    {
+        float start = this.volumeSlider.normalizedValue;
+        for (float timer = 0; timer < duration; timer += Time.deltaTime)
+        {
+            float progress = timer / duration;
+            this.volumeSlider.normalizedValue = (int)Mathf.Lerp(start, target, progress);
+            yield return null;
+        }
+        this.volumeSlider.normalizedValue = target;
+    }
+
+}
