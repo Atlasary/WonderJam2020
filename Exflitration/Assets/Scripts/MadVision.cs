@@ -5,6 +5,7 @@ using UnityEngine;
 public class MadVision : MonoBehaviour
 {
     private List<GameObject> inVision = new List<GameObject>();
+    private GameObject nearestPeopleVisible = null;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,25 @@ public class MadVision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        updateNearest();
+    }
 
+    private void updateNearest()
+    {
+        GameObject newNearest = nearest(inVision);
+        if (nearestPeopleVisible != newNearest) 
+        {
+            if (newNearest == null) // && nearestPeopleVisible == newNearest
+            {
+                nearestPeopleVisible = null;
+                transform.parent.gameObject.BroadcastMessage("removeNearestVisible");
+            } else {
+                nearestPeopleVisible = newNearest;
+                transform.parent.gameObject.BroadcastMessage("setNearestVisible", nearestPeopleVisible);
+            }
+
+        }
+        
     }
 
     bool isPeopleVisible(GameObject aim) 
@@ -29,16 +48,21 @@ public class MadVision : MonoBehaviour
         {
             if (col.gameObject.GetInstanceID() == aim.gameObject.GetInstanceID())
             {
-                if (isHidden(col.gameObject) && isAlreadyVisible(col.gameObject))
+                if (isHidden(aim.gameObject) || isDead(aim.gameObject)) 
                 {
-                    exitVision(col.gameObject);
-                } 
+                    return false;
+                }
                 return true;
             }
             
         }
-
         return false; 
+    }
+
+    private void fromVisionToMemory(GameObject people) 
+    {
+        
+        exitVision(people);
     }
 
     private void seeSomeone(GameObject people)
@@ -64,7 +88,6 @@ public class MadVision : MonoBehaviour
                 {
                     minDistance = distance;
                     nearest = obj;
-                    Debug.Log("trouvé");
                 }
             }
         }
@@ -79,26 +102,26 @@ public class MadVision : MonoBehaviour
     private void enterInVision(GameObject people)
     {
         inVision.Add(people);
-        transform.parent.gameObject.BroadcastMessage("setNearestVisible",people);
+        //transform.parent.gameObject.BroadcastMessage("setNearestVisible",people);
         people.BroadcastMessage("EnterVision");
     }
 
     private void stayInVision(GameObject people)
     {
-        transform.parent.gameObject.BroadcastMessage("setNearestVisible",people);
+        //transform.parent.gameObject.BroadcastMessage("setNearestVisible",people);
     }
 
     private void exitVision(GameObject people) 
     {
-        Debug.Log("Don't see anymore");
-        inVision.Remove(people);
-        if (isHidden(people)) {
+        if (isHidden(people.gameObject) && isAlreadyVisible(people.gameObject) 
+            || isAlreadyVisible(people.gameObject) && !isDead(people.gameObject))
+        {
             transform.parent.gameObject.BroadcastMessage("addInMemory",people);
-            transform.parent.gameObject.BroadcastMessage("removeNearestVisible");
         }
+        inVision.Remove(people);
         people.BroadcastMessage("ExitVision");
     }
-
+/*
     private void OnTriggerEnter2D(Collider2D obj) 
     {
         if (obj.tag == "Survivor") {
@@ -106,21 +129,27 @@ public class MadVision : MonoBehaviour
                 seeSomeone(obj.gameObject);
             }
         }
-    }
+    }*/
 
     private void OnTriggerStay2D(Collider2D obj)
     {
         if (obj.tag == "Survivor") {
-            if (isPeopleVisible(obj.gameObject) && !isHidden(obj.gameObject)) {
+            if (isPeopleVisible(obj.gameObject)) {
                 seeSomeone(obj.gameObject);
+            } else {
+                exitVision(obj.gameObject);
             }
         }
     }
 
     private bool isHidden(GameObject people) 
     {
-        // return people.GetComponent<CharacterControl>().IsHidden;
-        return true;
+        return people.GetComponent<CharacterControl>().IsHidden;
+    }
+
+    private bool isDead(GameObject people) 
+    {
+        return people.GetComponent<CharacterControl>().IsDead;
     }
 
     private void OnTriggerExit2D(Collider2D obj) 

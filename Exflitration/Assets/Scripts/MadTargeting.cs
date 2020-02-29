@@ -8,7 +8,7 @@ public class MadTargeting : MonoBehaviour
     private GameObject focus = null;
     private GameObject nearestVisible = null;
     
-    private float memoryHiddenTime = 5f;
+    private float memoryHiddenTime = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,7 @@ public class MadTargeting : MonoBehaviour
         foreach (GameObject obj in inMemory.Keys) {
             Debug.Log(inMemory[obj]);
             inMemory[obj] = inMemory[obj] - Time.deltaTime;
+            
             if (inMemory[obj] < 0) 
             {
                 inMemory.Remove(obj); // forgot
@@ -44,6 +45,7 @@ public class MadTargeting : MonoBehaviour
 
     private GameObject nearestPeople() 
     {
+        
         GameObject nearestPeopleM;
         GameObject[] arr;
 
@@ -63,6 +65,7 @@ public class MadTargeting : MonoBehaviour
         GameObject nearest = null;
         foreach (GameObject obj in list) 
         {
+            Debug.Log(obj);
             if (obj != null) {
                 distance = Vector3.Distance(transform.parent.position, obj.transform.position);
                 if (distance < minDistance) 
