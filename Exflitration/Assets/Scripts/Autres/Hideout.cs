@@ -22,7 +22,7 @@ public class Hideout : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Survivor"))
         {
-            collision.gameObject.GetComponent<CharacterControl>().IsHidden = true;
+            collision.gameObject.GetComponent<CharacterControl>().IsHidden = true;           
         }
         Debug.Log("Enter hideout");
         sr.color = new Color(1f, 1f, 1f, .5f);
