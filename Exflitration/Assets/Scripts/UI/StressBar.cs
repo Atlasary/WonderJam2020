@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
 public class StressBar : MonoBehaviour
 {
     public Image progress;
@@ -27,4 +27,4 @@ public class StressBar : MonoBehaviour
         return progress.fillAmount;
     }
 
-}
+}*/
