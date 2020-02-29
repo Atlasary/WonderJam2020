@@ -51,6 +51,17 @@ public class ClickManager : MonoBehaviour
                         }
 
                     }
+                }else
+                {
+                    if (previousObject != null)
+                    {
+                        if (previousObject.tag == "Survivor")
+                        {
+                            //Debug.Log("test");
+                            //previousObject.GetComponent<CharacterControl>().CharacterUnClicked();
+                            previousObject.GetComponent<CharacterControl>().MoveToPosition(mousePos2D);
+                        }
+                    }
                 }
             }
             else

@@ -16,6 +16,7 @@ public class CharacterControl : MonoBehaviour
     private Vector2 dir;
     private Vector3 target3;
     Quaternion qTo;
+    public bool IsHidden { get; set; }
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class CharacterControl : MonoBehaviour
         bc2 = GetComponent<BoxCollider2D>();
         velocity = new Vector2(1.0f, 1.0f);
         target = tr.position;
+        IsHidden = false;
     }
 
     // Update is called once per frame
@@ -84,7 +86,12 @@ public class CharacterControl : MonoBehaviour
             Debug.Log("Wall Touched");
             stopMoving();
         }
+        if (collision.gameObject.CompareTag("Hideout"))
+        {
+            Debug.Log("Hideout");
+        }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         Debug.Log("Exit");
