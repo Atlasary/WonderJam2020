@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Display")]
+    public SpriteRenderer body = null;
+
     [Header("Movement")]
     [Tooltip("Speed of the enemy")]
     [Range(0, 10)]
@@ -82,6 +85,9 @@ public class EnemyController : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, angleTarget, smoothRotation * Time.deltaTime);
+
+        if (angle > 90 && body != null) body.flipY = true;
+        else if (angle <= 90 && body != null && body.flipY) body.flipY = false;
     }
 
     bool closeEnough(Vector3 alfred, Vector3 billy)
@@ -92,7 +98,6 @@ public class EnemyController : MonoBehaviour
     void updateFocus(GameObject target)
     {
         this.target = target;
-        Debug.Log("APDJDKSLM");
     }
 
     void looseFocus()

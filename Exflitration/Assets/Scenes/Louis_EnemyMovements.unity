@@ -685,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c947d9d0436e1264783de560044fc8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   speed: 2
   pathContainer: {fileID: 1015905304}
   followingPath: 1
@@ -1085,7 +1086,7 @@ PrefabInstance:
     - target: {fileID: 5483438502936638371, guid: 41d7ff9478ca37940b4c8d8ddec6a0a3,
         type: 3}
       propertyPath: followingTarget
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7320959074942729789, guid: 41d7ff9478ca37940b4c8d8ddec6a0a3,
         type: 3}
