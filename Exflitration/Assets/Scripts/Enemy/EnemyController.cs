@@ -59,6 +59,7 @@ public class EnemyController : MonoBehaviour
             if (closeEnough(targetPosition, transform.position))
             {
                 Debug.Log(target.name + " is dead");
+                target.GetComponent<CharacterControl>().Die();
                 target = null;
             }
         }
