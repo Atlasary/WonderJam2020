@@ -8,6 +8,7 @@ public class CharacterControl : MonoBehaviour
     private BoxCollider2D bc2;
 
     public float speed = 3f;
+    public Sprite deadSprite;
     private Vector2 velocity;
     private bool selected = false;
     private Vector3 target;
@@ -34,6 +35,11 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // If The character is dead, Do nothing
+        if (IsDead)
+        {
+            return;
+        }
         float step = speed * Time.deltaTime;
 
         if (tr.position.x == target.x && tr.position.y == target.y)
@@ -66,8 +72,11 @@ public class CharacterControl : MonoBehaviour
 
     public void CharacterClicked()
     {
-        selected = true;
-        sr.color = Color.cyan;
+        if (!IsDead)
+        {
+            selected = true;
+            sr.color = Color.cyan;
+        }
     }
     public void CharacterUnClicked()
     {
@@ -112,6 +121,8 @@ public class CharacterControl : MonoBehaviour
     public void Die()
     {
         IsDead = true;
-        // Other stuff
+        CharacterUnClicked();
+        sr.sprite = deadSprite;
+        // Score (lose points)
     }
 }
