@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 138685525}
   - component: {fileID: 138685524}
   - component: {fileID: 138685523}
+  - component: {fileID: 138685526}
   m_Layer: 5
   m_Name: Button_music
   m_TagString: Untagged
@@ -460,6 +461,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138685521}
   m_CullTransparentMesh: 0
+--- !u!114 &138685526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138685521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dffd346457bc5e942b9c00842954b584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_son: {fileID: 138685523}
+  Button_sontext: {fileID: 573544324}
 --- !u!1 &291756171
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,6 +797,7 @@ GameObject:
   - component: {fileID: 884468502}
   - component: {fileID: 884468501}
   - component: {fileID: 884468500}
+  - component: {fileID: 884468503}
   m_Layer: 5
   m_Name: Button_son
   m_TagString: Untagged
@@ -888,6 +904,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884468498}
   m_CullTransparentMesh: 0
+--- !u!114 &884468503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884468498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dffd346457bc5e942b9c00842954b584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_son: {fileID: 884468500}
+  Button_sontext: {fileID: 44258122}
 --- !u!1 &1103799756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,7 +1388,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1479804610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14735e15886bb1249b6172e8aee7d836, type: 3}
+  m_Script: {fileID: 11500000, guid: 35c896a21f662a54da644205fa8c43a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button_return: {fileID: 1479804612}
