@@ -15,11 +15,18 @@ public class EnemyController : MonoBehaviour
     [Tooltip("Did the enemy follow the path")]
     public bool followingPath = true;
 
+    [Header("Chase")]
+    [Tooltip("Reference to the default target (by default : null)")]
+    public GameObject target = null;
+    [Tooltip("Does the Enemy follows a target")]
+    public bool followingTarget = false;
+
     Component[] pathPoints;
     int currentPoint = 0;
     int maxPoint;
 
     float smoothRotation = 5.0f;
+    float closeEnoughFactor = 0.01f;
 
     CharacterController controller;
 
@@ -40,26 +47,50 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (followingPath)
+        Vector3 targetPosition;
+
+        if (followingTarget && target != null)
         {
-            Vector3 point = pathPoints[currentPoint].transform.position;
-            Vector3 vectorToTarget = point - transform.position;
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion target = Quaternion.AngleAxis(angle, Vector3.forward);
+            targetPosition = target.transform.position;
 
-            transform.position = Vector3.MoveTowards(transform.position, point, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smoothRotation);
+            if (closeEnough(targetPosition, transform.position))
+            {
+                Debug.Log(target.name + " is dead");
+                target = null;
+            }
+        }
+        else if (followingPath)
+        {
+            targetPosition = pathPoints[currentPoint].transform.position;
 
-            if (Vector3.Distance(transform.position, point) < 0.01f)
+            if (closeEnough(targetPosition, transform.position))
             {
                 currentPoint ++;
                 if (currentPoint >= maxPoint) currentPoint = 0;
             }
         }
+        else
+        {
+            // Default case ; DEBUG ONLY
+            targetPosition = new Vector3(0f, 0f, 0f);
+        }
+
+        Vector3 vectorToTarget = targetPosition - transform.position;
+
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, angleTarget, smoothRotation * Time.deltaTime);
+    }
+
+    bool closeEnough(Vector3 alfred, Vector3 billy)
+    {
+        return Vector3.Distance(alfred, billy) < closeEnoughFactor;
     }
 
     void updateFocus(GameObject target)
     {
-        Debug.Log(target.name);
+        this.target = target;
     }
 }

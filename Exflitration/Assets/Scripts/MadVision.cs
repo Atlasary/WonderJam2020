@@ -72,7 +72,7 @@ public class MadVision : MonoBehaviour
     private void estEnFocus(GameObject target)
     {
         focus = target;
-        gameObject.BroadcastMessage("updateFocus", target);
+        transform.parent.gameObject.BroadcastMessage("updateFocus", target);
     }
 
     private void OnTriggerExit2D(Collider2D obj) 
