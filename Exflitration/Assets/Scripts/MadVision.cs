@@ -46,7 +46,7 @@ public class MadVision : MonoBehaviour
     private void changeFocus(GameObject target)
     {
         focus = target;
-        Debug.Log(target);
+        if (target != null) Debug.Log(target);
         transform.parent.gameObject.BroadcastMessage("updateFocus", target);
     }
 
