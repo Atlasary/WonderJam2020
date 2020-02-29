@@ -119,7 +119,8 @@ public class MadVision : MonoBehaviour
 
     private bool isHidden(GameObject people) 
     {
-        return people.GetComponent<CharacterControl>().IsHidden;
+        // return people.GetComponent<CharacterControl>().IsHidden;
+        return true;
     }
 
     private void OnTriggerExit2D(Collider2D obj) 
