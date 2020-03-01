@@ -40,16 +40,18 @@ public class MadVision : MonoBehaviour
     bool isPeopleVisible(GameObject aim) 
     {
         int layerMask = ~(1 << 2); // all except 2
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, aim.transform.position, layerMask , -Mathf.Infinity, Mathf.Infinity);
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, aim.transform.position, layerMask, -Mathf.Infinity, Mathf.Infinity);
+        //RaycastHit2D hit = Physics2D.Raycast(Vector3.Distance(transform.position, aim.transform.position), layerMask, -Mathf.Infinity, Mathf.Infinity);
         Collider2D col = hit.collider;
-
         // If it hits something...
-        if (col != null) 
+        if (hit) 
         {
             if (col.gameObject.GetInstanceID() == aim.gameObject.GetInstanceID())
             {
+                Debug.Log(col);
                 if (isHidden(aim.gameObject) || isDead(aim.gameObject)) 
                 {
+                    Debug.Log("notVisible");
                     return false;
                 }
                 return true;
@@ -61,7 +63,6 @@ public class MadVision : MonoBehaviour
 
     private void fromVisionToMemory(GameObject people) 
     {
-        
         exitVision(people);
     }
 
@@ -102,7 +103,6 @@ public class MadVision : MonoBehaviour
     private void enterInVision(GameObject people)
     {
         inVision.Add(people);
-        //transform.parent.gameObject.BroadcastMessage("setNearestVisible",people);
         people.BroadcastMessage("EnterVision");
     }
 
