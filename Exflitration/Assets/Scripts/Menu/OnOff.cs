@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class OnOff : MonoBehaviour
 {
     public Button Button_son;
-    AudioSource audioData;
+    public AudioSource audioData;
     public TextMeshProUGUI Button_sontext;
     // Start is called before the first frame update
     void Start()
