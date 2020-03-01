@@ -15,6 +15,7 @@ TextureImporter:
       213: -3703353933812696334
     second: Lambdas_3
   - first:
+<<<<<<< HEAD
       213: -8236471475785087604
     second: Lambdas_0
   - first:
@@ -27,11 +28,14 @@ TextureImporter:
       213: 5341851371066420097
     second: Lambdas_3
   - first:
+=======
+>>>>>>> 5aadca8b18ae5052ded86d34ea74b90f0c0e85ea
       213: -2706721317174675106
     second: Lambdas_4
   - first:
       213: 3860435499246627355
     second: Lambdas_5
+<<<<<<< HEAD
   - first:
       213: 3389507269893351368
     second: Lambdas_6
@@ -503,6 +507,8 @@ TextureImporter:
   - first:
       213: -2513544733275442888
     second: Lambdas_162
+=======
+>>>>>>> 5aadca8b18ae5052ded86d34ea74b90f0c0e85ea
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -628,7 +634,7 @@ TextureImporter:
         width: 41
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -649,7 +655,7 @@ TextureImporter:
         width: 13
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -754,7 +760,7 @@ TextureImporter:
         width: 16
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -4017,6 +4023,48 @@ TextureImporter:
       bones: []
       spriteID: 8313016e1681e1dd0800000000000000
       internalID: -2513544733275442888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lambdas_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 51
+        width: 41
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5973d78d4bcf6ad0800000000000000
+      internalID: -2706721317174675106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lambdas_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 275
+        width: 54
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a27e212a5039530800000000000000
+      internalID: 3860435499246627355
       vertices: []
       indices: 
       edges: []

@@ -55,9 +55,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        Vector3 targetPosition, vectorToTarget;
-        float angle;
-        Quaternion angleTarget;
+        Vector3 targetPosition;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -76,19 +74,10 @@ public class EnemyController : MonoBehaviour
             // }
 
             targetPosition = track.Dequeue();
-            vectorToTarget = target.transform.position - transform.position;
-
-            angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
-
         }
         else if (followingPath)
         {
             targetPosition = pathPoints[currentPoint].transform.position;
-            vectorToTarget = targetPosition - transform.position;
-
-            angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
 
             if (closeEnough(targetPosition, transform.position))
             {
@@ -99,11 +88,13 @@ public class EnemyController : MonoBehaviour
         else
         {
             // Default case ; DEBUG ONLY
-            targetPosition = new Vector3(0f, 0f, 0f);
-            vectorToTarget = targetPosition - transform.position;
-            angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
+            targetPosition = transform.position;
         }
+
+        Vector3 vectorToTarget = targetPosition - transform.position;
+
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
 
         rigidbody2.MovePosition(Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime));
         transform.rotation = Quaternion.Slerp(transform.rotation, angleTarget, smoothRotation * Time.deltaTime);
@@ -128,26 +119,29 @@ public class EnemyController : MonoBehaviour
         target = null;
         track.Clear();
         CancelInvoke("getTargetPosition");
-        currentPoint = getClosestPoint();
+        // currentPoint = getClosestPoint();
     }
 
     int getClosestPoint()
     {
         RaycastHit2D hit2D;
-        bool found = false;
-        int i = 0, layerMask = ~(1 << 2); // all except 2;
-        while (i < maxPoint && !found)
+        int i = 0, r = 0;
+        int layerMask =~ LayerMask.GetMask("Characters");
+        float dist = Mathf.Infinity;
+        while (i < maxPoint)
         {
             hit2D = Physics2D.Linecast(transform.position, pathPoints[i].transform.position, layerMask , -Mathf.Infinity, Mathf.Infinity);
-            found = (hit2D.collider != null && hit2D.collider.gameObject.tag == "PathPoint");
+            if (hit2D.collider != null && hit2D.collider.gameObject.tag == "PathPoint")
+            {
+                float tmp = Vector3.Distance(pathPoints[i].transform.position, transform.position);
+                if (dist > tmp) { dist = tmp; r = i; }
+            }
             i ++;
         }
 
-        if (i == maxPoint) i = 0;
-
-        Debug.DrawLine(transform.position, pathPoints[i].transform.position, Color.red, 1f);
-
-        return i;
+        Debug.DrawLine(transform.position, pathPoints[r].transform.position, Color.red, 1f);
+        Debug.Log(pathPoints[r].tag + " " +pathPoints[r].name);
+        return r;
     }
 
     void getTargetPosition()

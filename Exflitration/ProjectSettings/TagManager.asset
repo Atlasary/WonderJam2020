@@ -13,7 +13,11 @@ TagManager:
   - Collectable
   - ItemRequired
   - PathPoint
+<<<<<<< HEAD
   - WinZone
+=======
+  - Enemy
+>>>>>>> 5aadca8b18ae5052ded86d34ea74b90f0c0e85ea
   layers:
   - Default
   - TransparentFX
@@ -24,7 +28,7 @@ TagManager:
   - 
   - 
   - Obstacles
-  - 
+  - Characters
   - 
   - 
   - 
