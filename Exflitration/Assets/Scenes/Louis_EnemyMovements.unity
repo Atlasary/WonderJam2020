@@ -128,11 +128,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3163803133570421376, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2826577135162106928, guid: 731c5ecd85504b74c81d77b57501d9f2,
+        type: 3}
+    - target: {fileID: 3163803133570421376, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163803133570421376, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163803133570421376, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3163803133570421377, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
         type: 3}
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3163803133570421377, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163803133570421377, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
+        type: 3}
+      propertyPath: deadSprite
+      value: 
+      objectReference: {fileID: -6166151622719906967, guid: 731c5ecd85504b74c81d77b57501d9f2,
+        type: 3}
     - target: {fileID: 3163803133570421378, guid: 2e2a152f8fdecc54fb47fdb07a43d0e7,
         type: 3}
       propertyPath: m_Name
@@ -801,10 +833,20 @@ PrefabInstance:
       propertyPath: followingPath
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5483438502936638371, guid: 41d7ff9478ca37940b4c8d8ddec6a0a3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519684138790229533, guid: 41d7ff9478ca37940b4c8d8ddec6a0a3,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7610148834015087088, guid: 41d7ff9478ca37940b4c8d8ddec6a0a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.5
+      value: -5.15
       objectReference: {fileID: 0}
     - target: {fileID: 7610148834015087088, guid: 41d7ff9478ca37940b4c8d8ddec6a0a3,
         type: 3}

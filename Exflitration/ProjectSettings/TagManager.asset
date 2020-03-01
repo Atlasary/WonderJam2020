@@ -4,20 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Survivor
-  - People
-  - Wall
-  - Cachette
-  - Hideout
-  - Distraction
-  - Collectable
-  - ItemRequired
-  - PathPoint
-<<<<<<< HEAD
-  - WinZone
-=======
   - Enemy
->>>>>>> 5aadca8b18ae5052ded86d34ea74b90f0c0e85ea
+  - ItemRequired
+  - Survivor
+  - Collectable
+  - Wall
+  - Hideout
+  - PathPoint
+  - People
+  - Distraction
+  - WinZone
   layers:
   - Default
   - TransparentFX
@@ -27,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - Obstacles
-  - Characters
+  - 
+  - 
   - 
   - 
   - 

@@ -78,7 +78,7 @@ public class MadTargeting : MonoBehaviour
     {
         if (!GameObject.ReferenceEquals(focus, target)) {
             focus = target;
-            if (target == null) {
+            if (target is null) {
                 transform.parent.gameObject.BroadcastMessage("looseFocus");
             } else {
                 Debug.Log("Send focus");

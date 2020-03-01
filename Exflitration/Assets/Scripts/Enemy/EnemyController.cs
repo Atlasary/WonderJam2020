@@ -116,6 +116,11 @@ public class EnemyController : MonoBehaviour
     {
         return Vector3.Distance(alfred, billy) < closeEnoughFactor;
     }
+
+    void updateFocus()
+    {
+        Debug.Log("Cetait ca");
+    }
     
     void updateFocus(GameObject trg)
     {
@@ -126,11 +131,15 @@ public class EnemyController : MonoBehaviour
 
     void looseFocus()
     {
-        Debug.Log("<color=red>" + target.name + " loose focus</color>");
-        target = null;
-        // track.Clear();
-        // CancelInvoke("getTargetPosition");
-        // currentPoint = getClosestPoint();
+        if (target)
+        {
+            Debug.Log("<color=red>" + target.name + " loose focus</color>");
+            target = null;
+
+            // track.Clear();
+            // CancelInvoke("getTargetPosition");
+            // currentPoint = getClosestPoint();
+        }
     }
 
     int getClosestPoint()
