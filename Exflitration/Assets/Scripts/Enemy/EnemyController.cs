@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
 
     float smoothRotation = 5.0f;
     float closeEnoughFactor = 0.1f;
+    float distantEnoughFactor = 1f;
 
     void Start()
     {
@@ -54,7 +55,14 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        Vector3 targetPosition;
+        Vector3 targetPosition, vectorToTarget;
+        float angle;
+        Quaternion angleTarget;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            getClosestPoint();
+        }
 
         if (followingTarget && track.Count > 0 && target != null)
         {
@@ -68,11 +76,19 @@ public class EnemyController : MonoBehaviour
             // }
 
             targetPosition = track.Dequeue();
+            vectorToTarget = target.transform.position - transform.position;
+
+            angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
 
         }
         else if (followingPath)
         {
             targetPosition = pathPoints[currentPoint].transform.position;
+            vectorToTarget = targetPosition - transform.position;
+
+            angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
 
             if (closeEnough(targetPosition, transform.position))
             {
@@ -84,12 +100,10 @@ public class EnemyController : MonoBehaviour
         {
             // Default case ; DEBUG ONLY
             targetPosition = new Vector3(0f, 0f, 0f);
+            vectorToTarget = targetPosition - transform.position;
+            angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-
-        Vector3 vectorToTarget = targetPosition - transform.position;
-
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        Quaternion angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
 
         rigidbody2.MovePosition(Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime));
         transform.rotation = Quaternion.Slerp(transform.rotation, angleTarget, smoothRotation * Time.deltaTime);
@@ -106,7 +120,7 @@ public class EnemyController : MonoBehaviour
     void updateFocus(GameObject target)
     {
         this.target = target;
-        InvokeRepeating("getTargetPosition", 0, 1);
+        InvokeRepeating("getTargetPosition", 0, 2);
     }
 
     void looseFocus()
@@ -114,10 +128,40 @@ public class EnemyController : MonoBehaviour
         target = null;
         track.Clear();
         CancelInvoke("getTargetPosition");
+        currentPoint = getClosestPoint();
+    }
+
+    int getClosestPoint()
+    {
+        RaycastHit2D hit2D;
+        bool found = false;
+        int i = 0, layerMask = ~(1 << 2); // all except 2;
+        while (i < maxPoint && !found)
+        {
+            hit2D = Physics2D.Linecast(transform.position, pathPoints[i].transform.position, layerMask , -Mathf.Infinity, Mathf.Infinity);
+            found = (hit2D.collider != null && hit2D.collider.gameObject.tag == "PathPoint");
+            i ++;
+        }
+
+        if (i == maxPoint) i = 0;
+
+        Debug.DrawLine(transform.position, pathPoints[i].transform.position, Color.red, 1f);
+
+        return i;
     }
 
     void getTargetPosition()
     {
-        if (target) track.Enqueue(target.transform.position);
+        Vector3 trg = target.transform.position;
+        if (target)
+        {
+            if (track.Count > 0 && Vector3.Distance(track.Peek(), trg) >= distantEnoughFactor)
+            {
+                track.Enqueue(trg);
+            } else if (track.Count == 0)
+            {
+                track.Enqueue(trg);
+            }
+        }
     }
 }
