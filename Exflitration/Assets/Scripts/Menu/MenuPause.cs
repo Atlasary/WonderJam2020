@@ -13,7 +13,6 @@ public class MenuPause : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Toto");
             if(GameIsPaused)
             {
                 Resume();
