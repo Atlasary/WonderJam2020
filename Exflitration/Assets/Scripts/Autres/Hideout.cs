@@ -6,6 +6,7 @@ public class Hideout : MonoBehaviour
 {
 
     private SpriteRenderer sr;
+    private int cpt;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +23,27 @@ public class Hideout : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Survivor"))
         {
-            collision.gameObject.GetComponent<CharacterControl>().IsHidden = true;           
+            collision.gameObject.GetComponent<CharacterControl>().IsHidden = true;
+            cpt++;
         }
         Debug.Log("Enter hideout");
-        sr.color = new Color(1f, 1f, 1f, .5f);
+        if (cpt != 0)
+        {
+            sr.color = new Color(1f, 1f, 1f, .5f);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Survivor"))
         {
             collision.gameObject.GetComponent<CharacterControl>().IsHidden = false;
+            cpt--;
         }
         Debug.Log("Exit hideout");
-        sr.color = new Color(1f, 1f, 1f, 1f);
+        if (cpt == 0)
+        {
+            sr.color = new Color(1f, 1f, 1f, 1f);
+        }
+
     }
 }
