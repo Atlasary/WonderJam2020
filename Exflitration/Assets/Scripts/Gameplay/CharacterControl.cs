@@ -98,10 +98,6 @@ public class CharacterControl : MonoBehaviour
             Debug.Log("Wall Touched");
             StopMoving();
         }
-        if (collision.gameObject.CompareTag("Hideout"))
-        {
-            Debug.Log("Hideout");
-        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

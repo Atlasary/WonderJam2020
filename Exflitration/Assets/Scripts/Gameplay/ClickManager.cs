@@ -8,6 +8,7 @@ public class ClickManager : MonoBehaviour
     private List<Vector3> linePoints = new List<Vector3>();
     private GameObject previousObject;
     private GameObject previousCharacter;
+    private int layerMask = ~(1 << 2);
 
     void Start()
     {
@@ -19,13 +20,14 @@ public class ClickManager : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, layerMask);
 
 
         if (Input.GetMouseButtonDown(0))
         {      
             if (hit.collider != null)
             {
+                Debug.Log(hit.collider.gameObject);
                 //Check if the ray has hit a character
                 if (hit.collider.gameObject.tag == "Survivor")
                 {

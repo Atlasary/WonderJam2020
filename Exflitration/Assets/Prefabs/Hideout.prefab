@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6792954562480060326}
   - component: {fileID: 6792954562480060327}
   - component: {fileID: 1774313767}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hideout
   m_TagString: Hideout
   m_Icon: {fileID: 0}
