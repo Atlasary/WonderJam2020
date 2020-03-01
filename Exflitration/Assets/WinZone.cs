@@ -24,6 +24,7 @@ public class WinZone : MonoBehaviour
         {
             collision.gameObject.GetComponent<CharacterControl>().Won = true;
             collision.gameObject.GetComponent<CharacterControl>().CharacterUnClicked();
+            collision.gameObject.SetActive(false);
         }
         Debug.Log("Player won");
     }
