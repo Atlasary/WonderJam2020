@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,9 +9,11 @@ public class SelectCheck : MonoBehaviour
     public Button Button_level1;
     public Button Button_level2;
     public Button Button_level3;
+    public Button Button_level4;
     Button btn;
     bool L1 = true;
     bool L2 = true;
+    bool L3 = true;
     
     void Start()
     {
@@ -31,6 +33,11 @@ public class SelectCheck : MonoBehaviour
         	btn = Button_level3.GetComponent<Button>();
         	btn.onClick.AddListener(level3);
         }
+        if(L3 == true)
+        {
+        	btn = Button_level4.GetComponent<Button>();
+        	btn.onClick.AddListener(level4);
+        }
     }
 
     public void level1()
@@ -46,5 +53,9 @@ public class SelectCheck : MonoBehaviour
     public void level3()
     {
     	SceneManager.LoadScene("Level 3");
+    }
+    public void level4()
+    {
+    	SceneManager.LoadScene("Level 4");
     }
 }

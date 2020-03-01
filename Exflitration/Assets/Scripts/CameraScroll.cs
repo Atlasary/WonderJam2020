@@ -30,11 +30,11 @@ public class CameraScroll : MonoBehaviour
         {
             if (Input.mousePosition.x > 0.8f * Screen.width && transform.position.x < posMax)
             {
-                transform.Translate(Vector3.right * Time.deltaTime * 7f * (0.5f - (Screen.width - Mathf.Min(Input.mousePosition.x, Screen.width)) / Screen.width));
+                transform.Translate(Vector3.right * Time.deltaTime * 12f * (0.5f - (Screen.width - Mathf.Min(Input.mousePosition.x, Screen.width)) / Screen.width));
             }
             else if (Input.mousePosition.x < 0.2f * Screen.width && transform.position.x > posMin)
             {
-                transform.Translate(Vector3.left * Time.deltaTime * 7f * (0.5f - (Screen.width - Mathf.Min(Screen.width - Input.mousePosition.x, Screen.width)) / Screen.width));
+                transform.Translate(Vector3.left * Time.deltaTime * 12f * (0.5f - (Screen.width - Mathf.Min(Screen.width - Input.mousePosition.x, Screen.width)) / Screen.width));
             }
         }
         
