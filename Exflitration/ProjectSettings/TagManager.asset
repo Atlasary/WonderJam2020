@@ -10,6 +10,9 @@ TagManager:
   - Cachette
   - Hideout
   - Distraction
+  - Collectable
+  - ItemRequired
+  - PathPoint
   layers:
   - Default
   - TransparentFX
