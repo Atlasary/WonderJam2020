@@ -58,7 +58,7 @@ public class CharacterControl : MonoBehaviour
         {
             Vector3 temp = new Vector3(0.7f, 0.7f, 0);
             this.stressBar.transform.position = this.transform.position + temp;
-            updateStressBar(0.05f);
+            // updateStressBar(0.05f);
         }
         // If The character is dead, Do nothing
         if (IsDead)
