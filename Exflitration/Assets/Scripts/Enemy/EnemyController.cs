@@ -30,13 +30,16 @@ public class EnemyController : MonoBehaviour
     int currentPoint = 0;
     int maxPoint;
 
+    Queue<Vector3> track;
+
     float smoothRotation = 5.0f;
     float closeEnoughFactor = 0.1f;
 
     void Start()
     {
         rigidbody2 = GetComponent<Rigidbody2D>();
-        // rigidbody2.AddForce(new Vector2(100f, 0f));
+        
+        track = new Queue<Vector3>();
         
         if (pathContainer != null)
         {
@@ -53,16 +56,19 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 targetPosition;
 
-        if (followingTarget && target != null)
+        if (followingTarget && track.Count > 0 && target != null)
         {
-            targetPosition = target.transform.position;
+            // targetPosition = target.transform.position;
 
-            if (closeEnough(targetPosition, transform.position))
-            {
-                Debug.Log(target.name + " is dead");
-                target.GetComponent<CharacterControl>().Die();
-                target = null;
-            }
+            // if (closeEnough(targetPosition, transform.position))
+            // {
+            //     Debug.Log(target.name + " is dead");
+            //     target.GetComponent<CharacterControl>().Die();
+            //     target = null;
+            // }
+
+            targetPosition = track.Dequeue();
+
         }
         else if (followingPath)
         {
@@ -88,8 +94,8 @@ public class EnemyController : MonoBehaviour
         rigidbody2.MovePosition(Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime));
         transform.rotation = Quaternion.Slerp(transform.rotation, angleTarget, smoothRotation * Time.deltaTime);
 
-        if (angle > 90 && body != null) body.flipY = true;
-        else if (angle <= 90 && body != null && body.flipY) body.flipY = false;
+        // if (angle > 90 && body != null) body.flipY = true;
+        // else if (angle <= 90 && body != null && body.flipY) body.flipY = false;
     }
 
     bool closeEnough(Vector3 alfred, Vector3 billy)
@@ -100,10 +106,18 @@ public class EnemyController : MonoBehaviour
     void updateFocus(GameObject target)
     {
         this.target = target;
+        InvokeRepeating("getTargetPosition", 0, 1);
     }
 
     void looseFocus()
     {
         target = null;
+        track.Clear();
+        CancelInvoke("getTargetPosition");
+    }
+
+    void getTargetPosition()
+    {
+        if (target) track.Enqueue(target.transform.position);
     }
 }
