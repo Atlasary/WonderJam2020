@@ -14,6 +14,12 @@ TextureImporter:
   - first:
       213: -3703353933812696334
     second: Lambdas_3
+  - first:
+      213: -2706721317174675106
+    second: Lambdas_4
+  - first:
+      213: 3860435499246627355
+    second: Lambdas_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -139,7 +145,7 @@ TextureImporter:
         width: 13
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,7 +166,7 @@ TextureImporter:
         width: 14
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +187,7 @@ TextureImporter:
         width: 19
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,6 +195,48 @@ TextureImporter:
       bones: []
       spriteID: 2fa7c89e73b0b9cc0800000000000000
       internalID: -3703353933812696334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lambdas_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 51
+        width: 41
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5973d78d4bcf6ad0800000000000000
+      internalID: -2706721317174675106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lambdas_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 275
+        width: 54
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a27e212a5039530800000000000000
+      internalID: 3860435499246627355
       vertices: []
       indices: 
       edges: []

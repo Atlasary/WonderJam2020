@@ -26,7 +26,6 @@ public class MadTargeting : MonoBehaviour
     private void updateMemory() 
     {
         foreach (GameObject obj in inMemory.Keys) {
-            Debug.Log(inMemory[obj]);
             inMemory[obj] = inMemory[obj] - Time.deltaTime;
             
             if (inMemory[obj] < 0) 
@@ -40,12 +39,10 @@ public class MadTargeting : MonoBehaviour
     private void chooseFocus() 
     {
         changeFocus(nearestPeople());
-        //Debug.Log(focus);
     }
 
     private GameObject nearestPeople() 
     {
-        
         GameObject nearestPeopleM;
         GameObject[] arr;
 
@@ -65,14 +62,12 @@ public class MadTargeting : MonoBehaviour
         GameObject nearest = null;
         foreach (GameObject obj in list) 
         {
-            Debug.Log(obj);
             if (obj != null) {
                 distance = Vector3.Distance(transform.parent.position, obj.transform.position);
                 if (distance < minDistance) 
                 {
                     minDistance = distance;
                     nearest = obj;
-                    Debug.Log("trouvé");
                 }
             }
         }
@@ -81,12 +76,15 @@ public class MadTargeting : MonoBehaviour
 
     private void changeFocus(GameObject target)
     {
-        focus = target;
-        if (target == null) {
-            transform.parent.gameObject.BroadcastMessage("looseFocus");
-        } else {
-            transform.parent.gameObject.BroadcastMessage("updateFocus", target);
+        if (!GameObject.ReferenceEquals(focus, target)) {
+            focus = target;
+            if (target == null) {
+                transform.parent.gameObject.BroadcastMessage("looseFocus");
+            } else {
+                transform.parent.gameObject.BroadcastMessage("updateFocus", target);
+            }
         }
+        
     }
 
     
@@ -100,16 +98,13 @@ public class MadTargeting : MonoBehaviour
         
     }
 
-    // called by MadVision
     private void setNearestVisible(GameObject people) 
     {
         nearestVisible = people;
-        Debug.Log("set near");
     }
 
     private void removeNearestVisible() 
     {
         nearestVisible = null;
-        Debug.Log("rmv near");
     }
 }

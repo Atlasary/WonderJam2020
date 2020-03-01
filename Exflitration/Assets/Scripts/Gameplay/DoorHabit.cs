@@ -48,8 +48,12 @@ public class DoorHabit : MonoBehaviour
         isTurning = false;
     }
     
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    private void OnCollisionEnter2D(Collision2D collision)
+    { 
+        if (!canBeOpen)
+            return;
+
+        Debug.Log("test");
         if (!isTurning)
         {
             if (((int)(transform.rotation.eulerAngles.z - iniRot.eulerAngles.z) == 90 || (int)(transform.rotation.eulerAngles.z - iniRot.eulerAngles.z) == 0) &&

@@ -21,6 +21,7 @@ public class CharacterControl : MonoBehaviour
     Quaternion qTo;
     public bool IsHidden { get; set; }
     public bool IsDead { get; set; }
+    public bool Won { get; set; }
 
     // Stress Part //
     public float StressLevel;
@@ -38,6 +39,7 @@ public class CharacterControl : MonoBehaviour
         target = tr.position;
         IsHidden = false;
         IsDead = false;
+        Won = false;
         StressLevel = 0.9f;
         if (this.stressBar != null)
         {
@@ -45,7 +47,7 @@ public class CharacterControl : MonoBehaviour
             this.stressBar.transform.position = this.transform.position + temp;
             this.stressBar.GetComponent<StressBar>().setProgress(StressLevel);
             // taille de l'élément UI
-            this.stressBar.transform.localScale = new Vector3(0.01f, 0.01f, 0f);
+            this.stressBar.transform.localScale = new Vector3(0.003f, 0.003f, 0f);
         }
     }
 
@@ -56,13 +58,19 @@ public class CharacterControl : MonoBehaviour
         {
             Vector3 temp = new Vector3(0.7f, 0.7f, 0);
             this.stressBar.transform.position = this.transform.position + temp;
-            updateStressBar(0.05f);
+            // updateStressBar(0.05f);
         }
         // If The character is dead, Do nothing
         if (IsDead)
         {
             return;
         }
+
+        if (Won)
+        {
+            return;
+        }
+
         float step = speed * Time.deltaTime;
 
         if (tr.position.x == target.x && tr.position.y == target.y)
@@ -82,7 +90,7 @@ public class CharacterControl : MonoBehaviour
             float targetAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
             Vector3 curAngle = transform.eulerAngles;
             Vector3 target2 = curAngle;
-            target2.z = targetAngle - 90;
+            target2.z = targetAngle;
             //Debug.Log(targetAngle);
             if (targetAngle != 0)
             {
@@ -142,6 +150,10 @@ public class CharacterControl : MonoBehaviour
     }
     public void Die()
     {
+        if (Won)
+        {
+            return;
+        }
         IsDead = true;
         CharacterUnClicked();
         sr.sprite = deadSprite;

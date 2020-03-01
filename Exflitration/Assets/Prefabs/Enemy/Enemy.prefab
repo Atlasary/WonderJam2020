@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8204558930326339793}
   - component: {fileID: 8921159609150365695}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,9 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2101814737614082656}
   - component: {fileID: 2870391507004591392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_Targeting
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 5483438502936638371}
   - component: {fileID: 2597215880868558640}
   - component: {fileID: 108322973105327664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,8 +193,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 100
+  m_AngularDrag: 100
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 7320959074942729789}
   - component: {fileID: 3032071355827972317}
   - component: {fileID: 5647086453722281749}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Enemy_Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,35 +423,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2665420407425890325, guid: e16f54c6efa40cf4aaad31c4d380f16f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665420407425890325, guid: e16f54c6efa40cf4aaad31c4d380f16f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7453366039711725298, guid: e16f54c6efa40cf4aaad31c4d380f16f,
         type: 3}
       propertyPath: m_PointLightOuterAngle
-      value: 71
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7453366039711725298, guid: e16f54c6efa40cf4aaad31c4d380f16f,
         type: 3}
       propertyPath: m_PointLightInnerAngle
-      value: 29
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453366039711725298, guid: e16f54c6efa40cf4aaad31c4d380f16f,
-        type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453366039711725298, guid: e16f54c6efa40cf4aaad31c4d380f16f,
-        type: 3}
-      propertyPath: m_ShadowIntensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453366039711725298, guid: e16f54c6efa40cf4aaad31c4d380f16f,
-        type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.733
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453366039711725298, guid: e16f54c6efa40cf4aaad31c4d380f16f,
-        type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.87
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e16f54c6efa40cf4aaad31c4d380f16f, type: 3}
