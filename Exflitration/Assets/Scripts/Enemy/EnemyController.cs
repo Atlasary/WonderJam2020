@@ -24,19 +24,20 @@ public class EnemyController : MonoBehaviour
     [Tooltip("Does the Enemy follows a target")]
     public bool followingTarget = false;
 
+    private Rigidbody2D rigidbody2;
+
     Component[] pathPoints;
     int currentPoint = 0;
     int maxPoint;
 
     float smoothRotation = 5.0f;
-    float closeEnoughFactor = 0.01f;
-
-    CharacterController controller;
+    float closeEnoughFactor = 0.1f;
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
-
+        rigidbody2 = GetComponent<Rigidbody2D>();
+        // rigidbody2.AddForce(new Vector2(100f, 0f));
+        
         if (pathContainer != null)
         {
             pathPoints = pathContainer.GetComponentsInChildren<PathPoint>();
@@ -84,7 +85,7 @@ public class EnemyController : MonoBehaviour
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion angleTarget = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        rigidbody2.MovePosition(Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime));
         transform.rotation = Quaternion.Slerp(transform.rotation, angleTarget, smoothRotation * Time.deltaTime);
 
         if (angle > 90 && body != null) body.flipY = true;
