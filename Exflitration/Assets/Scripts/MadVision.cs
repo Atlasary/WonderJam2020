@@ -119,7 +119,7 @@ public class MadVision : MonoBehaviour
             transform.parent.gameObject.BroadcastMessage("addInMemory",people);
         }
         inVision.Remove(people);
-        people.BroadcastMessage("ExitVision");
+        // people.BroadcastMessage("ExitVision");
     }
 /*
     private void OnTriggerEnter2D(Collider2D obj) 
