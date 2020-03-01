@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* /!\ ONLY FOR TEST */
-
 public class Stress : MonoBehaviour
 {
-    
+
+    /*
     // Jauge de Stress du survivant
     public float newStress = 0f;
 
@@ -41,5 +41,5 @@ public class Stress : MonoBehaviour
     void ExitVision()
     {
         Debug.Log("ExitVision (people)");
-    }
+    } */
 }
