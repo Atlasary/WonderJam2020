@@ -74,6 +74,48 @@ public class ClickManager : MonoBehaviour
                     }
 
                 }
+                else if (hit.collider.gameObject.tag == "Collectable")
+                {
+                    if (previousCharacter != null)
+                    {
+                        float distance = Vector2.Distance(previousCharacter.GetComponent<Transform>().position, mousePos2D);
+                        Debug.Log(distance);
+                        //previousObject = hit.collider.gameObject;
+                        if (distance <= 1.3f)
+                        {
+                            hit.collider.gameObject.GetComponent<Collectable>().Take();
+                            previousCharacter.GetComponent<CharacterControl>().AddItem(hit.collider.gameObject);
+                        }
+                        else
+                        {
+                            previousObject.GetComponent<CharacterControl>().MoveToPosition(mousePos2D);
+                        }
+                    }
+
+                }
+                else if (hit.collider.gameObject.tag == "ItemRequired")
+                {
+                    if (previousCharacter != null)
+                    {
+                        float distance = Vector2.Distance(previousCharacter.GetComponent<Transform>().position, mousePos2D);
+                        Debug.Log(distance);
+                        //previousObject = hit.collider.gameObject;
+                        if (distance <= 1.3f)
+                        {
+                            Debug.Log(hit.collider.gameObject.GetComponent<ItemRequired>().NeededItemName);
+                            if (previousCharacter.GetComponent<CharacterControl>().getItemNamed(hit.collider.gameObject.GetComponent<ItemRequired>().NeededItemName) != null)
+                            {
+                                Debug.Log("wo");
+                                hit.collider.gameObject.GetComponent<ItemRequired>().receiveItem();
+                            }
+                        }
+                        else
+                        {
+                            previousObject.GetComponent<CharacterControl>().MoveToPosition(mousePos2D);
+                        }
+                    }
+
+                }
                 //else  // Obselete?
                 //{
                 //    if (previousObject != null)

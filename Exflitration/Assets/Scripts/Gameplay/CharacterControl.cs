@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class CharacterControl : MonoBehaviour
     private SpriteRenderer sr;
     private Rigidbody2D rb2;
     private BoxCollider2D bc2;
+    private List<GameObject> itemList = new List<GameObject>(); 
 
     public float speed = 3f;
     public Sprite deadSprite;
@@ -122,5 +124,34 @@ public class CharacterControl : MonoBehaviour
         CharacterUnClicked();
         sr.sprite = deadSprite;
         // Score (lose points)
+    }
+
+    public GameObject getItemNamed(string itemName)
+    {
+        foreach (GameObject item in itemList)
+        {
+            if (item.GetComponent<Collectable>().ItemName == itemName)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public GameObject UseItem(string itemName)
+    {
+        GameObject item = getItemNamed(itemName);
+        if (item == null)
+        {
+            return null;
+        }
+
+        itemList.Remove(item);
+        return item;
+    }
+
+    public void AddItem(GameObject item)
+    {
+        itemList.Add(item);
     }
 }
