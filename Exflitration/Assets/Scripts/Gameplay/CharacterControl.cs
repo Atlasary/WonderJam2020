@@ -20,6 +20,12 @@ public class CharacterControl : MonoBehaviour
     public bool IsHidden { get; set; }
     public bool IsDead { get; set; }
 
+    // Stress Part //
+    public float StressLevel;
+    public GameObject stressBar;
+    // End of Stress part //
+
+   
     void Start()
     {
         tr = GetComponent<Transform>();
@@ -30,11 +36,26 @@ public class CharacterControl : MonoBehaviour
         target = tr.position;
         IsHidden = false;
         IsDead = false;
+        StressLevel = 0.9f;
+        if (this.stressBar != null)
+        {
+            Vector3 temp = new Vector3(0.7f, 0f, 0);
+            this.stressBar.transform.position = this.transform.position + temp;
+            this.stressBar.GetComponent<StressBar>().setProgress(StressLevel);
+            // taille de l'élément UI
+            this.stressBar.transform.localScale = new Vector3(0.01f, 0.01f, 0f);
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (this.stressBar != null)
+        {
+            Vector3 temp = new Vector3(0.7f, 0.7f, 0);
+            this.stressBar.transform.position = this.transform.position + temp;
+            updateStressBar(0.05f);
+        }
         // If The character is dead, Do nothing
         if (IsDead)
         {
@@ -115,6 +136,7 @@ public class CharacterControl : MonoBehaviour
         rb2.velocity = Vector3.zero;
         rb2.angularVelocity = 0;
         Debug.Log(target);
+
     }
     public void Die()
     {
@@ -122,5 +144,11 @@ public class CharacterControl : MonoBehaviour
         CharacterUnClicked();
         sr.sprite = deadSprite;
         // Score (lose points)
+        Destroy(this.stressBar);
+
+    }
+    public void updateStressBar(float progress)
+    {
+        this.stressBar.GetComponent<StressBar>().LessProgress(progress);
     }
 }
