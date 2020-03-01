@@ -27,6 +27,7 @@ public class CharacterControl : MonoBehaviour
     public float StressLevel;
     public GameObject stressBar;
     // End of Stress part //
+    public GameObject obj;
 
    
     void Start()
@@ -163,6 +164,7 @@ public class CharacterControl : MonoBehaviour
         sr.sprite = deadSprite;
         // Score (lose points)
         Destroy(this.stressBar);
+        obj.GetComponent<ResultLevels>().actualized();
 
     }
     public void updateStressBar(float progress)
