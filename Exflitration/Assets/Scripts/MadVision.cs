@@ -103,7 +103,7 @@ public class MadVision : MonoBehaviour
     private void enterInVision(GameObject people)
     {
         inVision.Add(people);
-        people.BroadcastMessage("EnterVision");
+        //people.BroadcastMessage("EnterVision");
     }
 
     private void stayInVision(GameObject people)
@@ -119,7 +119,11 @@ public class MadVision : MonoBehaviour
             transform.parent.gameObject.BroadcastMessage("addInMemory",people);
         }
         inVision.Remove(people);
-        people.BroadcastMessage("ExitVision");
+<<<<<<< HEAD
+        //people.BroadcastMessage("ExitVision");
+=======
+        // people.BroadcastMessage("ExitVision");
+>>>>>>> a064b7d4720ced89e384c88422952da47ade25dd
     }
 /*
     private void OnTriggerEnter2D(Collider2D obj) 

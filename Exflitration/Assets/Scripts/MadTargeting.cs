@@ -25,13 +25,22 @@ public class MadTargeting : MonoBehaviour
 
     private void updateMemory() 
     {
-        foreach (GameObject obj in inMemory.Keys) {
+        print("Count = " + inMemory.Keys.Count);
+        List<GameObject> toerase = new List<GameObject>();
+        Dictionary<GameObject, float> test = inMemory;
+        foreach (GameObject obj in test.Keys) {
+            print(inMemory[obj]);
             inMemory[obj] = inMemory[obj] - Time.deltaTime;
-            
+            print(inMemory[obj]);
             if (inMemory[obj] < 0) 
             {
-                inMemory.Remove(obj); // forgot
+                toerase.Add(obj); // forgot
             }
+            print("bis + " + inMemory[obj]);
+        }
+        foreach(GameObject go in toerase)
+        {
+            inMemory.Remove(go);
         }
     }
     
