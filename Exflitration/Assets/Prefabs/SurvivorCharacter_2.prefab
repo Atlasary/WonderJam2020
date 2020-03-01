@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   deadSprite: {fileID: 21300000, guid: c0798d1774fbde14ca4b5d19ce4776c6, type: 3}
+  StressLevel: 0
+  stressBar: {fileID: 0}
 --- !u!212 &3391551073058046746
 SpriteRenderer:
   m_ObjectHideFlags: 0

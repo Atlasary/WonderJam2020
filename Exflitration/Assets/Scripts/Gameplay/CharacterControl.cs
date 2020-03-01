@@ -82,7 +82,7 @@ public class CharacterControl : MonoBehaviour
             float targetAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
             Vector3 curAngle = transform.eulerAngles;
             Vector3 target2 = curAngle;
-            target2.z = targetAngle - 90;
+            target2.z = targetAngle;
             //Debug.Log(targetAngle);
             if (targetAngle != 0)
             {
