@@ -45,7 +45,7 @@ public class CharacterControl : MonoBehaviour
             this.stressBar.transform.position = this.transform.position + temp;
             this.stressBar.GetComponent<StressBar>().setProgress(StressLevel);
             // taille de l'élément UI
-            this.stressBar.transform.localScale = new Vector3(0.01f, 0.01f, 0f);
+            this.stressBar.transform.localScale = new Vector3(0.003f, 0.003f, 0f);
         }
     }
 
