@@ -21,6 +21,7 @@ public class CharacterControl : MonoBehaviour
     Quaternion qTo;
     public bool IsHidden { get; set; }
     public bool IsDead { get; set; }
+    public bool Won { get; set; }
 
     // Stress Part //
     public float StressLevel;
@@ -38,6 +39,7 @@ public class CharacterControl : MonoBehaviour
         target = tr.position;
         IsHidden = false;
         IsDead = false;
+        Won = false;
         StressLevel = 0.9f;
         if (this.stressBar != null)
         {
@@ -63,6 +65,12 @@ public class CharacterControl : MonoBehaviour
         {
             return;
         }
+
+        if (Won)
+        {
+            return;
+        }
+
         float step = speed * Time.deltaTime;
 
         if (tr.position.x == target.x && tr.position.y == target.y)
@@ -142,6 +150,10 @@ public class CharacterControl : MonoBehaviour
     }
     public void Die()
     {
+        if (Won)
+        {
+            return;
+        }
         IsDead = true;
         CharacterUnClicked();
         sr.sprite = deadSprite;
