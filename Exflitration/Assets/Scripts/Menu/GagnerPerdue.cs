@@ -13,7 +13,9 @@ public class GagnerPerdue : MonoBehaviour
     public GameObject Gagner;
     public GameObject Perdre;
     string Level;
-    bool IsWon = false;
+    bool IsWon = true;
+    public Button Next;
+    Button btn;
 
     void Start()
     {
@@ -22,8 +24,9 @@ public class GagnerPerdue : MonoBehaviour
         if(IsWon == true)
         {
             won();
-            levels();
             Gagner.SetActive(true);
+            btn = Next.GetComponent<Button>();
+            btn.onClick.AddListener(levels);
         }
         else
         {
