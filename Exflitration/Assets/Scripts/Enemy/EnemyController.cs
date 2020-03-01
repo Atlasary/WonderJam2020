@@ -36,6 +36,8 @@ public class EnemyController : MonoBehaviour
     float closeEnoughFactor = 0.1f;
     float distantEnoughFactor = 1f;
 
+    bool focusVisible = false;
+
     void Start()
     {
         rigidbody2 = GetComponent<Rigidbody2D>();
@@ -49,7 +51,8 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Enemy doesn't have default path");
+            Debug.LogError("Enemy doesn't have default path, followingPath set to false");
+            followingPath = false;
         }
     }
 
@@ -62,9 +65,10 @@ public class EnemyController : MonoBehaviour
             getClosestPoint();
         }
 
-        if (followingTarget && track.Count > 0 && target != null)
+        // if (followingTarget && track.Count > 0 && target != null)
+        if (followingTarget && target != null)
         {
-            // targetPosition = target.transform.position;
+            targetPosition = target.transform.position;
 
             // if (closeEnough(targetPosition, transform.position))
             // {
@@ -73,7 +77,7 @@ public class EnemyController : MonoBehaviour
             //     target = null;
             // }
 
-            targetPosition = track.Dequeue();
+            // targetPosition = track.Dequeue();
         }
         else if (followingPath)
         {
@@ -103,22 +107,29 @@ public class EnemyController : MonoBehaviour
         // else if (angle <= 90 && body != null && body.flipY) body.flipY = false;
     }
 
+    void setFocusVisible(bool focus)
+    {
+        focusVisible = focus;
+    }
+
     bool closeEnough(Vector3 alfred, Vector3 billy)
     {
         return Vector3.Distance(alfred, billy) < closeEnoughFactor;
     }
     
-    void updateFocus(GameObject target)
+    void updateFocus(GameObject trg)
     {
-        this.target = target;
-        InvokeRepeating("getTargetPosition", 0, 2);
+        target = trg;
+        Debug.Log("<color=red>" + target.name + " got focus</color>");
+        // InvokeRepeating("getTargetPosition", 0, 2);
     }
 
     void looseFocus()
     {
+        Debug.Log("<color=red>" + target.name + " loose focus</color>");
         target = null;
-        track.Clear();
-        CancelInvoke("getTargetPosition");
+        // track.Clear();
+        // CancelInvoke("getTargetPosition");
         // currentPoint = getClosestPoint();
     }
 
@@ -140,22 +151,21 @@ public class EnemyController : MonoBehaviour
         }
 
         Debug.DrawLine(transform.position, pathPoints[r].transform.position, Color.red, 1f);
-        Debug.Log(pathPoints[r].tag + " " +pathPoints[r].name);
+        Debug.Log(pathPoints[r].tag + " " + pathPoints[r].name);
         return r;
     }
 
     void getTargetPosition()
     {
         Vector3 trg = target.transform.position;
-        if (target)
+        Debug.Log("<color=green>" + target.name + " is here " + trg + "</color>");
+
+        if (track.Count > 0 && Vector3.Distance(track.Peek(), trg) >= distantEnoughFactor)
         {
-            if (track.Count > 0 && Vector3.Distance(track.Peek(), trg) >= distantEnoughFactor)
-            {
-                track.Enqueue(trg);
-            } else if (track.Count == 0)
-            {
-                track.Enqueue(trg);
-            }
+            track.Enqueue(trg);
+        } else if (track.Count == 0)
+        {
+            track.Enqueue(trg);
         }
     }
 }
