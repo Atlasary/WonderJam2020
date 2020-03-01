@@ -13,14 +13,16 @@ public class GagnerPerdue : MonoBehaviour
     public GameObject Gagner;
     public GameObject Perdre;
     string Level;
-    bool IsWon = true;
     public Button Next;
+    GameObject obj;
     Button btn;
+    bool IsWon;
 
     void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
         Level = scene.name;
+        IsWon = obj.GetComponent<ResultLevels>().score();
         if(IsWon == true)
         {
             won();

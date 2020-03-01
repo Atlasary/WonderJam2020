@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+
 
 public class CharacterControl : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class CharacterControl : MonoBehaviour
     public float StressLevel;
     public GameObject stressBar;
     // End of Stress part //
+    public GameObject obj;
 
    
     void Start()
@@ -48,6 +51,10 @@ public class CharacterControl : MonoBehaviour
             this.stressBar.GetComponent<StressBar>().setProgress(StressLevel);
             // taille de l'élément UI
             this.stressBar.transform.localScale = new Vector3(0.002f, 0.002f, 0f);
+            float argument = StressLevel + 0.7f;
+            StopCoroutine("StressTo");
+            StartCoroutine("StressTo", argument);
+            updateStressBar(0.7f);
         }
     }
 
@@ -58,18 +65,13 @@ public class CharacterControl : MonoBehaviour
         {
             Vector3 temp = new Vector3(0.7f, 0.7f, 0);
             this.stressBar.transform.position = this.transform.position + temp;
-            updateStressBar(0.05f);
         }
         // If The character is dead, Do nothing
         if (IsDead)
             return;
 
         if (StressLevel > 0.6f)
-        {
-            CharacterUnClicked();
-            transform.position = Random.insideUnitCircle * 5;
-            StopMoving();
-        }
+            frenesie();
 
         if (Won)
             return;
@@ -100,6 +102,15 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
+    public void frenesie()
+    {
+        if (velocity.Equals(new Vector2(0f, 0f))) { // si le survivant n'est pas en déplacement
+            Debug.Log("I'm crazy baby");
+            CharacterUnClicked();
+            MoveToPosition(Random.insideUnitCircle * 5);
+        }
+    }
+
     public void CharacterClicked()
     {
         if (!IsDead)
@@ -115,11 +126,7 @@ public class CharacterControl : MonoBehaviour
         //StopMoving();
     }
     
-    public void updateStress(float f)
-    {
-        this.StressLevel = f;
-    }
-    
+ 
     public void MoveToPosition(Vector2 target)
     {
         hasReachedTarget = false;
@@ -163,6 +170,7 @@ public class CharacterControl : MonoBehaviour
         sr.sprite = deadSprite;
         // Score (lose points)
         Destroy(this.stressBar);
+        obj.GetComponent<ResultLevels>().actualized();
 
     }
     public void updateStressBar(float progress)
@@ -197,5 +205,18 @@ public class CharacterControl : MonoBehaviour
     public void AddItem(GameObject item)
     {
         itemList.Add(item);
+    }
+
+    IEnumerator StressTo(float target)
+    {
+        float start = StressLevel;
+        float duration = 10.5f;
+        for (float timer = 0; timer < duration; timer += Time.deltaTime)
+        {
+            float progress = timer / duration;
+            StressLevel = Mathf.Lerp(start, target, progress);
+            yield return null;
+        }
+        StressLevel = target;
     }
 }
